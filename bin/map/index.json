@@ -1,0 +1,7 @@
+{
+  "staticPath": {
+    "sl": "./statelessWidget.ejs",
+    "sf": "./statefulWidget.ejs"
+  },
+  "customPath": {}
+}
