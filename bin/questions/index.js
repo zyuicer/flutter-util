@@ -13,6 +13,7 @@ export default async (map) => {
     {
       type: "rawlist",
       name: "mapMatch",
+      message: "模板选择",
       choices: mapMatchList,
     },
   ]);
