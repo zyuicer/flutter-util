@@ -10,7 +10,7 @@ import { converSnackKey, converGreatHump } from "../shared/replace/snack.js";
 import { cwd } from "node:process";
 import { createFile, createFolderProcess } from "../shared/mkdir/index.js";
 
-export function createWidget(fileName) {
+export function createWidgetProcess(fileName) {
   program
     .command("create")
     .argument("<filename>")
@@ -35,8 +35,12 @@ async function crateWidgetAction(filename, options) {
       resolve(cwd(), `${options.fold}/${converSnackKey(filename)}.dart`),
       code
     );
+    console.log(
+      chalk.green(`[${options.fold}/${converSnackKey(filename)}.dart]创建成功`)
+    );
   } else {
     createFileProcess(resolve(cwd(), `${converSnackKey(filename)}.dart`), code);
+    chalk.green(`[${converSnackKey(filename)}.dart]创建成功`);
   }
 }
 

@@ -1,10 +1,12 @@
 #!/usr/bin/env node
-import { createWidget } from "./command/index.js";
+import { createWidgetProcess } from "./command/index.js";
 import { fileURLToPath } from "node:url";
 import { program } from "commander";
+import { initCustomTemplateProcess } from "./command/initCustomTemplate.js";
 
-createWidget();
-program.version("0.0.1");
+createWidgetProcess();
+initCustomTemplateProcess();
+program.version("0.0.1").name("fu");
 try {
   program.parse();
 } catch (err) {
