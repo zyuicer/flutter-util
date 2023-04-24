@@ -1,5 +1,5 @@
 import { program } from "commander";
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import chalk from "chalk";
 import questions from "../questions/index.js";
@@ -10,7 +10,7 @@ import { converSnackKey, converGreatHump } from "../shared/replace/snack.js";
 import { cwd } from "node:process";
 import { createFile, createFolderProcess } from "../shared/mkdir/index.js";
 
-export function createWidgetProcess(fileName) {
+export function createWidgetProcess() {
   program
     .command("create")
     .argument("<filename>")
@@ -65,6 +65,10 @@ async function querstionsProcess(map) {
 /** 匹配静态的 模板和自定义的模板 */
 function parsetMatchFile(mapMatch) {
   if (hasOwn(mapDetail.customPath, mapMatch)) {
+    if (existsSync(mapDetail.customPath[mapMatch]))
+      return console.log(
+        chalk.red(`[${mapDetail.customPath[mapMatch]}]文件路径失效`)
+      );
     return readFileSync(resolve(mapDetail.customPath[mapMatch]), "utf-8");
   } else if (hasOwn(mapDetail.staticPath, mapMatch)) {
     return readFileSync(
